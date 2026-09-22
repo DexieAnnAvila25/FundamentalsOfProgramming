@@ -1,0 +1,14 @@
+public class secondjava {
+public static void main(String[] args){
+
+String name "Dexie Ann Avila";
+String address "Bani Pangasinan";
+String contact "09770733295";
+int age 19;
+String crush "Wala";
+
+System.out.println("Name=" + name);
+System.out.println("Address=" + address);
+System.out.println("Contact=" + contact);
+System.out.println("Age=" + age);
+System.out.println("Crush=" + crush);
