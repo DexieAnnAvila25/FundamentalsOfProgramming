@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Assignment2b {
+    public static void main(String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+
+            System.out.print("Enter hourly pay rate (Php): ");
+            double hourlyRate = Double.parseDouble(reader.readLine());
+
+            System.out.print("Enter hours worked: ");
+            double hoursWorked = Double.parseDouble(reader.readLine());
+
+            double grossPay = hourlyRate * hoursWorked;
+
+            double taxPercentage = 0.0;
+            if (grossPay <= 2000.00) {
+                taxPercentage = 0.10;
+            } else if (grossPay <= 4000.00) {
+                taxPercentage = 0.12;
+            } else if (grossPay <= 10000.00) {
+                taxPercentage = 0.15;
+            } else {
+                taxPercentage = 0.20;
+            }
+
+            double withholdingTax = grossPay * taxPercentage;
+            double netPay = grossPay - withholdingTax;
+
+            System.out.println("\n--- Payroll Summary (BufferedReader) ---");
+            System.out.printf("Gross Pay: Php %.2f%n", grossPay);
+            System.out.printf("Withholding Tax (%.0f%%): Php %.2f%n", (taxPercentage * 100), withholdingTax);
+            System.out.printf("Net Pay: Php %.2f%n", netPay);
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading input.");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid numeric input provided.");
+        }
+    }
