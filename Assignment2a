@@ -1,0 +1,38 @@
+import javax.swing.JOptionPane;
+
+public class Assignment1a {
+    public static void main(String[] args) {
+
+        String rateInput = JOptionPane.showInputDialog(null, "Enter hourly pay rate (Php):", "Input Pay Rate", JOptionPane.QUESTION_MESSAGE);
+        double hourlyRate = Double.parseDouble(rateInput);
+
+        String hoursInput = JOptionPane.showInputDialog(null, "Enter hours worked:", "Input Hours Worked", JOptionPane.QUESTION_MESSAGE);
+        double hoursWorked = Double.parseDouble(hoursInput);
+
+        double grossPay = hourlyRate * hoursWorked;
+
+        double taxPercentage = 0.0;
+        if (grossPay <= 2000.00) {
+            taxPercentage = 0.10;
+        } else if (grossPay <= 4000.00) {
+            taxPercentage = 0.12;
+        } else if (grossPay <= 10000.00) {
+            taxPercentage = 0.15;
+        } else {
+            taxPercentage = 0.20;
+        }
+
+        double withholdingTax = grossPay * taxPercentage;
+        double netPay = grossPay - withholdingTax;
+
+        String outputMessage = String.format(
+            "--- Payroll Summary ---\n" +
+            "Gross Pay: Php %.2f\n" +
+            "Withholding Tax (%.0f%%): Php %.2f\n" +
+            "Net Pay: Php %.2f", 
+            grossPay, (taxPercentage * 100), withholdingTax, netPay
+        
+
+        JOptionPane.showMessageDialog(null, outputMessage, "Payroll Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
