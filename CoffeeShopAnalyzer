@@ -1,0 +1,71 @@
+// Dinedeklara ang pampublikong class na pinangalanang CoffeeShopAnalyzer
+public class CoffeeShopAnalyzer {
+    // Ito ang main method kung saan nagsisimulang tumakbo ang Java program
+    public static void main(String[] args) {
+        
+        // Gumagawa at naglalagay ng paunang halaga sa integer array para sa benta sa loob ng 7 araw
+        int[] weeklySales = {120, 145, 130, 155, 180, 210, 195};
+        // Gumagawa ng String array para sa mga pangalan ng araw sa isang linggo
+        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+        // Nagpi-print ng header para sa benta bawat araw
+        System.out.println("--- Daily Sales ---");
+        // Gumagamit ng for loop para isa-isahing daanan ang lahat ng laman ng weeklySales array
+        for (int i = 0; i < weeklySales.length; i++) {
+            // Nagpi-print ng pangalan ng araw at ang katumbas nitong benta gamit ang index na i
+            System.out.println(daysOfWeek[i] + " sales: " + weeklySales[i]);
+        }
+
+        // Gumagawa ng variable na totalSales at itinatakda ang panimulang halaga nito sa 0
+        int totalSales = 0;
+        // Gumagamit ng enhanced for-each loop para kunin ang bawat benta sa loob ng weeklySales
+        for (int dailySale : weeklySales) {
+            // Idinadagdag ang benta sa kasalukuyang araw papunta sa kabuuang benta (totalSales)
+            totalSales += dailySale;
+        }
+
+        // Kinakalkula ang average sa pamamagitan ng pag-cast sa totalSales bilang double bago i-divide sa haba ng array
+        double averageSales = (double) totalSales / weeklySales.length;
+
+        // Nagpi-print ng blangkong linya at header para sa buod ng benta sa buong linggo
+        System.out.println("\n--- Weekly Summary ---");
+        // Nagpi-print ng kabuuang bilang ng nabentang tasa
+        System.out.println("Total Sales: " + totalSales + " cups");
+        // Nagpi-print ng average na benta bawat araw
+        System.out.println("Average Daily Sales: " + averageSales + " cups");
+
+        // Itinatakda ang unang elemento ng weeklySales bilang panimulang pinakamataas na benta
+        int maxSales = weeklySales[0];
+        // Itinatakda ang unang elemento ng weeklySales bilang panimulang pinakamababang benta
+        int minSales = weeklySales[0];
+        // Itinatakda ang unang araw (Monday) bilang panimulang pinakamagandang araw
+        String bestDay = daysOfWeek[0];
+        // Itinatakda ang unang araw (Monday) bilang panimulang pinakamatumal na araw
+        String worstDay = daysOfWeek[0];
+
+        // Nagsisimula ang loop sa index 1 dahil naitakda na ang index 0 bilang panimulang halaga
+        for (int i = 1; i < weeklySales.length; i++) {
+            // Sinusuri kung ang benta sa kasalukuyang araw ay mas mataas kaysa sa kasalukuyang maxSales
+            if (weeklySales[i] > maxSales) {
+                // Pinapalitan ang maxSales ng bagong pinakamataas na benta
+                maxSales = weeklySales[i];
+                // Pinapalitan ang bestDay ng pangalan ng araw na may pinakamataas na benta
+                bestDay = daysOfWeek[i];
+            }
+            // Sinusuri kung ang benta sa kasalukuyang araw ay mas mababa kaysa sa kasalukuyang minSales
+            if (weeklySales[i] < minSales) {
+                // Pinapalitan ang minSales ng bagong pinakamababang benta
+                minSales = weeklySales[i];
+                // Pinapalitan ang worstDay ng pangalan ng araw na may pinakamababang benta
+                worstDay = daysOfWeek[i];
+            }
+        }
+
+        // Nagpi-print ng header para sa pinakamataas at pinakamababang benta
+        System.out.println("\n--- Bests and Worsts ---");
+        // Nagpi-print kung anong araw ang may pinakamataas na benta at kung ilan ito
+        System.out.println("Best day was " + bestDay + " with " + maxSales + " cups.");
+        // Nagpi-print kung anong araw ang may pinakamababang benta at kung ilan ito
+        System.out.println("Slowest day was " + worstDay + " with " + minSales + " cups.");
+    }
+}
