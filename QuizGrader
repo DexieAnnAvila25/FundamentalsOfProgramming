@@ -1,0 +1,53 @@
+// Dinedeklara ang pampublikong class na pinangalanang QuizGrader
+public class QuizGrader {
+    // Ito ang main method kung saan nagsisimulang tumakbo ang Java program
+    public static void main(String[] args) {
+        
+        // Gumagawa ng char array na naglalaman ng mga tamang sagot (Answer Key)
+        char[] answerKey = {'A', 'C', 'B', 'D', 'A', 'C', 'C', 'B', 'A', 'D'};
+        // Gumagawa ng char array na naglalaman ng mga sagot ng estudyante
+        char[] studentAnswers = {'A', 'B', 'B', 'D', 'C', 'C', 'C', 'B', 'A', 'A'};
+
+        // Gumagawa ng variable na correctCount para bilangin ang tamang sagot at itinatakda sa 0
+        int correctCount = 0;
+
+        // Nagpi-print ng header para sa pagsusuri ng mga sagot
+        System.out.println("--- Quiz Grading Breakdown ---");
+
+        // Gumagamit ng for loop upang isa-isahing ikumpara ang 10 sagot gamit ang haba ng answerKey
+        for (int i = 0; i < answerKey.length; i++) {
+            // Kinukuha ang tamang sagot at ginagawang uppercase para sigurado ang pagkukumpara
+            char correctAns = Character.toUpperCase(answerKey[i]);
+            // Kinukuha ang sagot ng estudyante at ginagawang uppercase (para sa Bonus Challenge: Case Insensitivity)
+            char studentAns = Character.toUpperCase(studentAnswers[i]);
+
+            // Sinusuri kung magkapareho ang sagot ng estudyante at ang tamang sagot
+            if (studentAns == correctAns) {
+                // Nagdadagdag ng 1 sa bilang ng tamang sagot kung tama ang estudyante
+                correctCount++;
+            } else {
+                // Nagpi-print ng detalye ng maling sagot (Bonus Challenge: Missed Questions Tracker)
+                System.out.println("Question " + (i + 1) + ": Incorrect. You answered '" + studentAnswers[i] + "', correct answer is '" + answerKey[i] + "'.");
+            }
+        }
+
+        // Kinakalkula ang porsyento ng iskor gamit ang double casting upang hindi mawala ang decimal
+        double scorePercentage = ((double) correctCount / answerKey.length) * 100;
+
+        // Nagpi-print ng blangkong linya at header para sa pinal na resulta
+        System.out.println("\n--- Final Score ---");
+        // Nagpi-print ng kabuuang bilang ng tamang sagot kumpara sa kabuuang bilang ng tanong
+        System.out.println("Correct Answers: " + correctCount + "/" + answerKey.length);
+        // Nagpi-print ng nakuhang porsyento ng estudyante
+        System.out.println("Percentage: " + scorePercentage + "%");
+
+        // Sinusuri kung ang porsyento ng iskor ay 70.0 o mas mataas
+        if (scorePercentage >= 70.0) {
+            // Nagpi-print ng PASS kung pasado ang iskor
+            System.out.println("Result: PASS");
+        } else {
+            // Nagpi-print ng FAIL kung mababa sa 70.0 ang iskor
+            System.out.println("Result: FAIL");
+        }
+    }
+}
